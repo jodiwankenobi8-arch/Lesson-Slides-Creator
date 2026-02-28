@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deployment Diagnostic</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #0b1220;
+      color: #e5e7eb;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .status { padding: 10px; margin: 10px 0; border-left: 4px solid #0f0; background: rgba(0,255,0,0.1); }
+    .error { border-left-color: #f00; background: rgba(255,0,0,0.1); }
+    pre { background: rgba(255,255,255,0.05); padding: 10px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Deployment Verification Diagnostic</h1>
+  <p>This static file tests if Make is serving latest files.</p>
+  
+  <div class="status">
+    ✅ If you can see this page, Make is serving /public/ files correctly.
+  </div>
+  
+  <div class="status">
+    📦 Diagnostic Version: v458-cache-bust<br>
+    🕐 Created: 2026-02-24T12:00:00Z
+  </div>
+  
+  <h2>Expected Deployment State:</h2>
+  <pre>
+/index.html
+  - Entrypoint: &lt;script type="module" src="/src/main.tsx?v=458"&gt;&lt;/script&gt;
+  - Boot script with green banner + badge
+  - Console logs: "🟢 BOOT_SCRIPT_RAN", "📦 DEPLOYMENT_ID: v458-cache-bust"
+
+/src/main.tsx
+  - Fatal error handler with full-screen overlay
+  - Console log: "✅ main.tsx loaded - Deployment ID: 2026-02-24T12:00:00Z-v3"
+  </pre>
+  
+  <h2>🧪 Manual Verification Steps:</h2>
+  <ol>
+    <li><strong>Go to root preview URL</strong> (not this diagnostic page)</li>
+    <li><strong>Look for GREEN BANNER at top</strong> - If visible: ✅ Boot script ran</li>
+    <li><strong>Look for green badge bottom-right</strong> - Should say "v458 DEPLOYED"</li>
+    <li><strong>Open DevTools Console</strong> - Look for:
+      <pre>🟢 BOOT_SCRIPT_RAN [timestamp]
+📦 DEPLOYMENT_ID: v458-cache-bust
+🎯 ENTRYPOINT: /src/main.tsx?v=458
+✅ main.tsx loaded - Deployment ID: 2026-02-24T12:00:00Z-v3</pre>
+    </li>
+    <li><strong>Check Network tab</strong> - Filter "main.tsx" - Should show request for <code>main.tsx?v=458</code></li>
+  </ol>
+  
+  <h2>📋 What to Report:</h2>
+  <div class="status">
+    <strong>If GREEN BANNER visible:</strong> Latest index.html deployed ✅<br>
+    <strong>If NO banner:</strong> Still serving old index.html ❌
+  </div>
+  
+  <div class="status">
+    <strong>If banner shows but app doesn't load:</strong><br>
+    - Check console for FATAL_BOOT_ERROR or module errors<br>
+    - Check Network tab for failed main.tsx request<br>
+    - Copy full error and share
+  </div>
+  
+  <h2>🔄 Force Make Rebuild (If banner still not visible):</h2>
+  <ol>
+    <li>Look for any Make UI buttons: Rebuild / Restart / Reset / Redeploy</li>
+    <li>Try browser hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)</li>
+    <li>Clear browser cache completely</li>
+    <li>Close Make project and reopen</li>
+    <li>If all else fails: This is a Make infrastructure caching issue beyond code fixes</li>
+  </ol>
+  
+  <hr>
+  <p><em>This diagnostic page was created by AI assistant. Last updated: 2026-02-24T12:00:00Z</em></p>
+</body>
+</html>

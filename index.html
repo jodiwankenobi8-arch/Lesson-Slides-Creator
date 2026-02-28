@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson Template System</title>
+  
+  <!-- DEPLOYMENT VERIFICATION: 2026-02-24T12:00:00Z - CACHE BUST v458 -->
+  
+  <!-- BOOT SCRIPT CHECK - Earliest possible execution point -->
+  <script>
+    (function () {
+      const stamp = new Date().toISOString();
+      console.log("🟢 BOOT_SCRIPT_RAN", stamp);
+      console.log("📦 DEPLOYMENT_ID: v458-cache-bust");
+      console.log("🎯 ENTRYPOINT: /src/main.tsx?v=458");
+      
+      // CREATE VISUAL DIAGNOSTIC OVERLAY
+      const overlay = document.createElement("div");
+      overlay.id = "boot-diagnostic";
+      overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #0f0 0%, #0a0 100%);
+        color: #000;
+        padding: 12px;
+        font: bold 14px/1.4 monospace;
+        z-index: 999999;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,255,0,0.3);
+      `;
+      overlay.innerHTML = `
+        ✅ BOOT SCRIPT EXECUTED - Deployment v458 - ${stamp}<br>
+        ✅ Entrypoint: /src/main.tsx?v=458 - Waiting for React mount...
+      `;
+      document.documentElement.appendChild(overlay);
+      
+      // Also add bottom badge
+      const badge = document.createElement("div");
+      badge.textContent = "v458 DEPLOYED " + stamp;
+      badge.style.cssText = `
+        position: fixed;
+        bottom: 6px;
+        right: 8px;
+        font-size: 10px;
+        background: #000;
+        color: #0f0;
+        padding: 2px 4px;
+        z-index: 99999;
+        opacity: 0.8;
+      `;
+      document.documentElement.appendChild(badge);
+      
+      // Self-diagnostics
+      setTimeout(() => {
+        const root = document.getElementById('root');
+        if (!root) {
+          overlay.style.background = 'linear-gradient(135deg, #f00 0%, #a00 100%)';
+          overlay.style.color = '#fff';
+          overlay.innerHTML += '<br>❌ ERROR: Missing #root element!';
+        } else if (root.children.length === 0) {
+          overlay.style.background = 'linear-gradient(135deg, #fa0 0%, #f80 100%)';
+          overlay.innerHTML += '<br>⚠️ WARNING: #root is empty - React not mounted yet (3s elapsed)';
+        } else {
+          overlay.style.background = 'linear-gradient(135deg, #0f0 0%, #0a0 100%)';
+          overlay.innerHTML += '<br>✅ SUCCESS: React mounted to #root';
+          // Auto-hide after 2 seconds on success
+          setTimeout(() => overlay.style.display = 'none', 2000);
+        }
+      }, 3000);
+    })();
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx?v=458"></script>
+</body>
+</html>
