@@ -1,3 +1,2 @@
-// AUTO-GENERATED SHIM
-// Keeps old imports like "../utils/admin-auth" working after moving canonical utils to /src/utils
+// AUTO-GENERATED SHIM - keeps old src/app imports working
 export * from "../../utils/admin-auth.ts";

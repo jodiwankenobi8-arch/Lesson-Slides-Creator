@@ -1,3 +1,2 @@
-// AUTO-GENERATED SHIM
-// Keeps old imports like "../types/llm" working after moving canonical types to /src/types
+// AUTO-GENERATED SHIM - keeps old src/app imports working
 export * from "../../types/llm.ts";
