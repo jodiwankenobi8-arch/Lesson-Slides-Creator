@@ -1,0 +1,323 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Apple Orchard Planner Design System - LOCKED PALETTE */
+  /* ONLY THESE COLORS ALLOWED (ChatGPT-prescribed strict palette) */
+  
+  /* Core Apple Orchard Tokens (use these everywhere) */
+  --ao-navy: #1F2A44;          /* Structure, headings, primary text */
+  --ao-cream: #FFF6E9;         /* Background, workspace */
+  --ao-white: #FFFFFF;         /* Cards, panels */
+  --ao-red: #C84C4C;           /* Primary actions, apples */
+  --ao-green: #6FA86B;         /* Success states ONLY */
+  --ao-sky: #CFE3F5;           /* Info tags ONLY */
+  --ao-pink: #F7DDE2;          /* Empty states ONLY */
+  --ao-text: #2B2B2B;          /* Body text */
+  --ao-muted: #6B7280;         /* Secondary text */
+  --ao-border: #E5E5E5;        /* Dividers, borders */
+  
+  /* Design System Specs */
+  --ao-radius-card: 16px;      /* Card corners */
+  --ao-radius-btn: 12px;       /* Button corners */
+  --ao-shadow: 0 8px 20px rgba(31, 42, 68, 0.08); /* Soft shadow */
+  
+  /* Typography */
+  --font-size: 16px;
+  --font-heading: 'Montserrat', 'Nunito', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* LEGACY Color Palette (mapped to strict palette above) */
+  --warm-cream: var(--ao-cream);
+  --soft-sky-blue: var(--ao-sky);
+  --soft-pink: var(--ao-pink);
+  --primary-navy: var(--ao-navy);
+  --muted-apple-red: var(--ao-red);
+  --leaf-green: var(--ao-green);
+  --soft-charcoal: var(--ao-text);
+  --light-divider-gray: var(--ao-border);
+  --pure-white: var(--ao-white);
+  
+  /* Semantic Color Tokens (mapped to Apple Orchard palette) */
+  --background: var(--ao-cream);
+  --foreground: var(--ao-text);
+  --card: var(--ao-white);
+  --card-foreground: var(--ao-text);
+  --popover: var(--ao-white);
+  --popover-foreground: var(--ao-text);
+  --primary: var(--ao-red);
+  --primary-foreground: var(--ao-white);
+  --secondary: var(--ao-sky);
+  --secondary-foreground: var(--ao-navy);
+  --muted: #F5F5F5;
+  --muted-foreground: var(--ao-muted);
+  --accent: var(--ao-navy);
+  --accent-foreground: var(--ao-white);
+  --destructive: var(--ao-red);
+  --destructive-foreground: var(--ao-white);
+  --success: var(--ao-green);
+  --success-foreground: var(--ao-white);
+  --pink-accent: var(--ao-pink);
+  --pink-accent-foreground: var(--ao-text);
+  
+  /* Processing/Info state helpers (replaces purple/blue) */
+  --processing-bg: color-mix(in srgb, var(--ao-navy) 5%, transparent);
+  --processing-border: color-mix(in srgb, var(--ao-navy) 20%, transparent);
+  --processing-text: var(--ao-navy);
+  --info-bg: var(--ao-sky);
+  --info-text: var(--ao-navy);
+  
+  /* Chart Colors (Apple Orchard palette only) */
+  --chart-1: var(--ao-red);
+  --chart-2: var(--ao-green);
+  --chart-3: var(--ao-sky);
+  --chart-4: var(--ao-navy);
+  --chart-5: #FFA07A; /* Soft peach - allowed accent */
+  
+  /* Border Radius (Apple Orchard spec) */
+  --radius: var(--ao-radius-btn);
+  --radius-card: var(--ao-radius-card);
+  
+  /* Spacing System: 8px / 16px / 24px / 32px / 40px */
+  --spacing-xs: 0.5rem;  /* 8px */
+  --spacing-sm: 1rem;    /* 16px */
+  --spacing-md: 1.5rem;  /* 24px */
+  --spacing-lg: 2rem;    /* 32px */
+  --spacing-xl: 2.5rem;  /* 40px */
+  
+  /* Sidebar (Navy structure) */
+  --sidebar: #1F2A44;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #C84C4C;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2A3A5A;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #2A3A5A;
+  --sidebar-ring: #C84C4C;
+}
+
+.dark {
+  /* Keep dark mode simple or disable if not needed */
+  --background: #1F2A44;
+  --foreground: #FFFFFF;
+  --card: #2A3A5A;
+  --card-foreground: #FFFFFF;
+  --popover: #2A3A5A;
+  --popover-foreground: #FFFFFF;
+  --primary: #C84C4C;
+  --primary-foreground: #FFFFFF;
+  --secondary: #3A4A6A;
+  --secondary-foreground: #FFFFFF;
+  --muted: #3A4A6A;
+  --muted-foreground: #CCCCCC;
+  --accent: #C84C4C;
+  --accent-foreground: #FFFFFF;
+  --destructive: #E85555;
+  --destructive-foreground: #FFFFFF;
+  --border: #3A4A6A;
+  --input: #3A4A6A;
+  --ring: #C84C4C;
+  --sidebar: #1F2A44;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #C84C4C;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2A3A5A;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #2A3A5A;
+  --sidebar-ring: #C84C4C;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  /**
+  * Apple Orchard Planner Typography
+  * Headings use Montserrat/Nunito for friendly professionalism
+  * Body uses Inter for clean readability
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-25px);
+  }
+}
+
+@keyframes wave-slow {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-15px);
+  }
+}
+
+.animate-wave {
+  animation: wave 3s ease-in-out infinite;
+}
+
+.animate-wave-slow {
+  animation: wave-slow 4s ease-in-out infinite;
+}
+
+/* Lesson Slide Factory - Phase 1 animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Timer states */
+.timer-widget .timer-display {
+  transition: all 0.3s ease;
+}
+
+.timer-widget .timer-display.running {
+  color: #3B82F6;
+}
+
+.timer-widget .timer-display.complete {
+  color: #10B981;
+  transform: scale(1.1);
+}
+
+/* Slide transitions */
+.slide-transition-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.slide-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.slide-transition-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-transition-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 300ms, transform 300ms;
+}

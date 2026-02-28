@@ -1,0 +1,82 @@
+PERFORMANCE FIRST — STRICT MODE (DO ONLY THIS, NO VISUAL REDESIGN YET)
+
+Goal: stop lag. Do NOT do any aesthetic redesign, spacing tweaks, ribbon styling, or “make it prettier” work. We are freezing visuals until I say otherwise.
+
+0) HARD RULES
+
+Execute ONLY the changes below.
+
+No summaries, audits, reports, or “next steps.”
+
+No popups.
+
+When finished, reply only: Done.
+
+1) TURN OFF VERBOSE LOGGING (BIG WIN)
+
+Ensure logger.debug() does not run in preview/production builds.
+
+Keep logger.error() and logger.warn() only.
+
+Remove any remaining console.* calls (replace with logger or delete).
+Goal: reduce console + runtime overhead.
+
+2) AUTOSAVE: SILENT + MUCH LESS FREQUENT
+
+Increase autosave debounce to 10 seconds (from 2s).
+
+Do NOT autosave while the user is actively typing; reset timer on every keystroke.
+
+Only save after 10s of inactivity.
+
+Saving must be silent: no toasts, no modals, no banners.
+
+3) REMOVE/PAUSE ALL BACKGROUND POLLING
+
+Disable any recurring intervals (network checks, job status polling, health pings, etc.) unless the user is actively on a page that needs it.
+
+If polling is needed for a specific page, start it only when that page mounts and stop it on unmount.
+Goal: no “always running” timers.
+
+4) PREVENT RENDER THRASHING (MOST IMPORTANT)
+
+Identify and fix components causing frequent re-renders:
+
+wrap stable components with React.memo
+
+use useMemo / useCallback for props passed to children
+
+avoid creating new objects/arrays/functions inline in JSX where it triggers re-renders
+
+Ensure slide preview / thumbnail lists do NOT rerender the whole list on small state changes.
+
+5) VIRTUALIZE / LIMIT HEAVY LISTS
+
+For slide thumbnails / lesson lists:
+
+render only what’s visible (virtualize) OR
+
+cap rendering to first ~20 items and lazy-render the rest on scroll.
+Goal: keep DOM small.
+
+6) DEFER HEAVY WORK TO IDLE TIME
+
+Any non-critical heavy work (parsing, indexing, precomputing previews) must run via:
+
+requestIdleCallback (with fallback to setTimeout)
+
+or a Web Worker if already available
+
+Never block the UI thread during navigation/typing.
+
+7) PROOF OUTPUT (REQUIRED)
+
+At the end, paste ONLY:
+
+the exact files changed (file paths)
+
+the updated autosave debounce value and where it’s defined
+
+a list of all active intervals/timers remaining in the app (should be none globally)
+
+Then reply: Done.

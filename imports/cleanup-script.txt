@@ -1,0 +1,59 @@
+STRICT COMPLETION MODE — “DONE” ONLY IF ALL REQUIREMENTS MET
+
+You are not done. Do NOT say “Done” unless every item below is completed and proven.
+
+REQUIRED CHANGES (MUST COMPLETE ALL)
+1) DELETE THESE FILES (HARD DELETE)
+
+Delete src/app/components/recovery-prompt.tsx
+
+Delete src/utils/dev-auto-login.ts
+
+2) REMOVE ANY RECOVERY REFERENCES (VERIFY)
+
+Search for these strings and ensure 0 matches:
+
+RecoveryPrompt
+
+getRecoverySnapshot
+
+startAutoRecovery
+
+stopAutoRecovery
+
+restoreFromSnapshot
+
+clearSnapshot
+
+3) THEME ENFORCEMENT = ZERO VIOLATIONS (NOT “MOSTLY”)
+
+Perform a bulk replacement pass across the codebase so ALL disallowed Tailwind color classes are eliminated.
+
+Disallowed patterns must be 0 matches:
+
+bg-gray- text-gray- border-gray-
+
+bg-blue- text-blue- border-blue-
+
+bg-purple- text-purple- border-purple-
+
+indigo orange yellow emerald
+
+Any hard-coded hex colors not in Apple Orchard tokens
+
+Replace with Apple Orchard tokens only: var(--ao-...) or existing semantic vars in theme.css.
+
+PROOF REQUIRED (NO EXCUSES)
+
+At the end, paste ONLY:
+
+Output showing both files are deleted (e.g., git status showing deletions, or directory listing showing they no longer exist)
+
+Search/grep counts showing ALL patterns above are 0 matches
+
+If any matches remain, list remaining files and fix them until 0.
+
+RESPONSE RULE
+
+If and only if everything is complete and proof shows zeros, reply: Done.
+Otherwise reply: Not done — still fixing.
